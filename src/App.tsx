@@ -56,15 +56,19 @@ function App() {
     if (city) {
       const cityId = cities.find((item, id) => item.name === city)?.id;
 
-      !cityId ? setError("Please provide a valid city name") : setError("");
-
       if (e.key === "Enter")
-        fetch(
-          `${api.baseUrl}/forecast?id=${cityId}&units=metric&appid=${api.key}`
-        )
-          .then((res) => res.json())
-          .then((res) => setWeather(res.list))
-          .catch((e) => console.log(e));
+        if (!cityId) {
+          setError("Please provide a valid city name");
+          setDays(undefined);
+        } else {
+          setError("");
+          fetch(
+            `${api.baseUrl}/forecast?id=${cityId}&units=metric&appid=${api.key}`
+          )
+            .then((res) => res.json())
+            .then((res) => setWeather(res.list))
+            .catch((e) => console.log(e));
+        }
     }
   };
 
