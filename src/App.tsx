@@ -7,7 +7,7 @@ import "./index.css";
 import citiesData from "./utils/city.list.json";
 
 const api = {
-  key: "727b661c93e9c793512104a5ee12978c",
+  key: "",
   baseUrl: "http://api.openweathermap.org/data/2.5",
 };
 
